@@ -19,7 +19,7 @@ function App() {
             
 <BrowserRouter>
 <Routes>
-  <Route path='/' element={<GetDa></GetDa>}></Route>
+  <Route path='/' element={<GetDa></GetDa>}> </Route>
   <Route path='/add' element={<Employform></Employform>}> </Route>
   <Route path='/update/:id' element={<EmpolyEdit></EmpolyEdit>}> </Route>
   <Route path='/empolydetails/:id' element={<Employform></Employform>}> </Route>

@@ -1,5 +1,7 @@
 import React, { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import {ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Employform() {
 
   const [formData, setFormData] = useState({
@@ -31,7 +33,14 @@ function Employform() {
       .then((res) => res.json())
       .then((data) => {
         
-          alert("Data Add to Empolyee Database");
+          toast.success("Empoly Data Add Successfully!", {
+                  position: "top-center",
+                  style: {
+                    fontSize: '20px',   
+                    padding: '25px',    
+                    width: '400px',   
+                  },
+                });
           navigate("/");
         
       })
@@ -44,6 +53,7 @@ function Employform() {
 
   return (
     <div className="container mt-4">
+       <ToastContainer></ToastContainer>
       <h1 className="mb-4 text-center bg-primary text-white">Add Employee</h1>
       
       <form onSubmit={handleSubmit} className="mb-4">

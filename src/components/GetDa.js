@@ -156,8 +156,11 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faBriefcase, faPhone, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
-
-export default function EmployeeTable() {
+import {ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import '../App.css'
+import { EyeIcon, Pen, Trash } from 'lucide-react';
+export default function GetDa() {
   const [employees, setEmployees] = useState([]);  // State for employees
   const [selectedEmployee, setSelectedEmployee] = useState(null);  // State for selected employee
   const [showCard, setShowCard] = useState(true); // State to control the visibility of the card
@@ -178,19 +181,30 @@ export default function EmployeeTable() {
   }
 
   async function deleteEmployee(id) {
+    const isConfirmed = window.confirm("Are you sure you want to delete this employee?");
+    if (isConfirmed) {
     try {
      // await fetch(`http://localhost:5000/api/employees/${id}`, {
-      await fetch(`https://empolyserver.vercel.app/api/employees${id}`,{
+      await fetch(`https://empolyserver.vercel.app/api/employees/${id}`,{
      method: 'DELETE',
       });
       setEmployees(employees.filter(emp => emp._id !== id));
       setSelectedEmployee(null);
-      setShowCard(false); // Hide card after delete
+      //alert("Data delete successfully")
+      toast.success("Empoly Data Delete Success!", {
+        position: "top-center",
+        style: {
+          fontSize: '20px',   
+          padding: '25px',    
+          width: '400px',   
+        },
+      });
+      setShowCard(false); 
     } catch (error) {
       console.error('Error deleting employee:', error);
     }
   }
-
+  }
   // Function to close the employee details card
   const closeCard = () => {
     setShowCard(false);
@@ -205,6 +219,8 @@ export default function EmployeeTable() {
 
   return (
     <div className="container-fluid py-4">
+
+      <ToastContainer></ToastContainer>
       <h1 className="mb-4">Employee Management</h1>
 
       <div className="row">
@@ -231,19 +247,19 @@ export default function EmployeeTable() {
                         className="btn btn-sm btn-primary me-2"
                         onClick={() => viewEmployee(employee)} // Use the viewEmployee function to select an employee
                       >
-                        View
+                        View<EyeIcon></EyeIcon>
                       </button>
                       <a 
                         href={`/update/${employee._id}`}
                         className="btn btn-sm btn-warning me-2"
                       >
-                        Edit
+                        Edit<Pen></Pen>
                       </a>
                       <button
                         className="btn btn-sm btn-danger"
                         onClick={() => deleteEmployee(employee._id)}
                       >
-                        Delete
+                        Delete<Trash></Trash>
                       </button>
                     </td>
                   </tr>
