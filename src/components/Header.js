@@ -8,7 +8,7 @@ function Header() {
         <span className="navbar-brand fw-bold">Employee Management System</span>
         <div className="navbar-nav">
          <button className='btn btn-primary'><a className="nav-link active text-white" href="/add">Add Employee</a></button>
-       <button className='btn btn-primary'><a className="nav-link active text-white" href="/">Home Page</a></button>
+       
   </div>
 
   
