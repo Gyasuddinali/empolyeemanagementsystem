@@ -155,7 +155,7 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faBriefcase, faPhone, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faBriefcase, faPhone, faMapMarkerAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 import {ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../App.css'
@@ -163,7 +163,7 @@ import { EyeIcon, Pen, Trash } from 'lucide-react';
 export default function GetDa() {
   const [employees, setEmployees] = useState([]);  // State for employees
   const [selectedEmployee, setSelectedEmployee] = useState(null);  // State for selected employee
-  const [showCard, setShowCard] = useState(true); // State to control the visibility of the card
+  const [showCard, setShowCard] = useState(true); 
 
   useEffect(() => {
     fetchEmployees();
@@ -205,16 +205,16 @@ export default function GetDa() {
     }
   }
   }
-  // Function to close the employee details card
+  
   const closeCard = () => {
     setShowCard(false);
     setSelectedEmployee(null);
   };
 
-  // Function to view the selected employee
+
   const viewEmployee = (employee) => {
     setSelectedEmployee(employee);
-    setShowCard(true);  // Make sure the card is visible when selecting an employee
+    setShowCard(true);  
   };
 
   return (
@@ -224,7 +224,7 @@ export default function GetDa() {
       <h1 className="mb-4">Employee Management</h1>
 
       <div className="row">
-        {/* Table View */}
+        
         <div className="col-md-8">
           <div className="table-responsive">
             <table className="table table-bordered table-hover">
@@ -239,7 +239,7 @@ export default function GetDa() {
               <tbody>
                 {employees.map((employee) => (
                   <tr key={employee._id}>
-                    <td>{employee.name}</td>
+                    <td><FontAwesomeIcon className="person-icon text-info" icon={faUser} /> {employee.name}</td>
                     <td>{employee.department}</td>
                     <td>{employee.location}</td>
                     <td>
@@ -269,7 +269,7 @@ export default function GetDa() {
           </div>
         </div>
 
-        {/* Card View for Selected Employee */}
+        
         <div className="col-12 col-sm-6 col-md-4 col-lg-3">
           {showCard && selectedEmployee && (
             <div className="card">
